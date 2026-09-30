@@ -1,0 +1,12 @@
+{
+  "name": "pzdemo-as",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Illustrative CartService/CartController fix for HF-2487",
+  "scripts": {
+    "test": "node --test"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}
