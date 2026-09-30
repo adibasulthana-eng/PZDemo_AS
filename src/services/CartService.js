@@ -2,12 +2,13 @@
 
 const CART_STATUS_UNINITIALIZED = 'UNINITIALIZED';
 
-function getCartStatus(cart) {
-  const status = cart?.order?.status;
-  if (status === undefined || status === null) {
-    return CART_STATUS_UNINITIALIZED;
+class CartService {
+  getCartStatus(cart) {
+    if (cart === undefined || cart === null) {
+      return CART_STATUS_UNINITIALIZED;
+    }
+    return cart.status;
   }
-  return status;
 }
 
-module.exports = { getCartStatus, CART_STATUS_UNINITIALIZED };
+module.exports = { CartService, CART_STATUS_UNINITIALIZED };
