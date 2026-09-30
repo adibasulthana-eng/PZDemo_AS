@@ -1,17 +1,22 @@
 'use strict';
 
-const CartService = require('../services/CartService');
-
-async function handleRequest(req, res) {
-  const cart = req?.body?.cart;
-  if (!cart || typeof cart !== 'object' || !cart.order) {
-    return res.status(400).json({
-      error: 'INVALID_CART',
-      message: 'Cart or order is missing or not initialized.',
-    });
+class CartController {
+  constructor(cartService) {
+    this.cartService = cartService;
   }
-  const status = CartService.getCartStatus(cart);
-  return res.status(200).json({ status });
+
+  handleRequest(payload) {
+    const cart = payload?.cart;
+    if (cart === undefined || cart === null || typeof cart !== 'object') {
+      return {
+        error: 'INVALID_CART',
+        message: 'Cart is missing or not initialized.',
+      };
+    }
+    return {
+      status: this.cartService.getCartStatus(cart),
+    };
+  }
 }
 
-module.exports = { handleRequest };
+module.exports = { CartController };
